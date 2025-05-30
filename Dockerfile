@@ -19,6 +19,8 @@ COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prerelease /usr/src/app/src ./src
 COPY --from=prerelease /usr/src/app/package.json .
 
+RUN chown -R bun:bun /usr/src/app
+
 USER bun
 EXPOSE 3000/tcp
 ENTRYPOINT [ "bun", "start" ]
